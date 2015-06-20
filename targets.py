@@ -53,13 +53,32 @@ with tag("svg", xmlns="http://www.w3.org/2000/svg",
                      stroke=c(not black),
                      stroke_width=mm(stroke_width)):
                 pass
-            for j in range(4):
-                alpha = math.pi * j / 2
-                with tag("text",
-                         x=mm(offset + math.cos(alpha) * text_r),
-                         y=mm(offset + math.sin(alpha) * text_r + font_size * 0.3),
-                         fill=c(not black),
-                         **{"text-anchor": "middle",
-                            "font-family": font_family,
-                            "font-size": mm(font_size)}):
-                    print(rings - i, end="")
+
+            if i == 0:
+                with tag("line",
+                         x1=mm(offset - ring_size / 2),
+                         y1=mm(offset),
+                         x2=mm(offset + ring_size / 2),
+                         y2=mm(offset),
+                         stroke_width=mm(stroke_width),
+                         stroke=c(not black)):
+                    pass
+                with tag("line",
+                         x1=mm(offset),
+                         y1=mm(offset - ring_size / 2),
+                         x2=mm(offset),
+                         y2=mm(offset + ring_size / 2),
+                         stroke_width=mm(stroke_width),
+                         stroke=c(not black)):
+                    pass
+            else:
+                for j in range(4):
+                    alpha = math.pi * j / 2
+                    with tag("text",
+                             x=mm(offset + math.cos(alpha) * text_r),
+                             y=mm(offset + math.sin(alpha) * text_r + font_size * 0.3),
+                             fill=c(not black),
+                             **{"text-anchor": "middle",
+                                "font-family": font_family,
+                                "font-size": mm(font_size)}):
+                        print(rings - i, end="")
