@@ -5,7 +5,7 @@ import math
 
 diameter = 140 # mm
 rings = 10
-black_rings = 4
+white_rings = rings // 2
 stroke_width = 0.5 # mm
 padding = 15 # percent of diameter (on each side)
 font_family = "Verdana"
@@ -44,7 +44,7 @@ with tag("svg", xmlns="http://www.w3.org/2000/svg",
     for i in reversed(range(rings)):
         r = (i + 0.5) * ring_size
         text_r = i * ring_size
-        black = i < (rings - black_rings) and i > 0
+        black = i < white_rings and i > 0
         with tag("g"):
             with tag("circle",
                      cx=mm(offset), cy=mm(offset),
